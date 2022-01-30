@@ -14,12 +14,12 @@ public class Consumer extends Thread {
     @Override
     public void run() {
         System.out.println("Running Consumer...");
-        char product;
+        Operation product;
         
         for(int i=0 ; i<5 ; i++) {
             product = this.buffer.consume();
             //System.out.println("Consumer consumed: " + product);
-            Buffer.print("Consumer consumed: " + product);
+            Buffer.print("Consumer consumed: " + "(" + product.cType + " " + product.val1 + " " + product.val2 + ") -> " + product.solve());
             
             try {
                 Thread.sleep(1000);
