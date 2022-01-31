@@ -38,7 +38,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" pref="278" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" pref="48" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -89,21 +89,35 @@
                               <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jSpinner2" max="32767" attributes="0"/>
-                              <Component id="jTextField3" max="32767" attributes="0"/>
-                              <Component id="jSpinner1" max="32767" attributes="0"/>
-                              <Component id="jLabel4" max="32767" attributes="0"/>
-                              <Component id="jTextField4" min="-2" pref="86" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="errProductoresNo" max="32767" attributes="0"/>
+                                      <Component id="consumidoresNo" max="32767" attributes="0"/>
+                                      <Component id="productoresNo" max="32767" attributes="0"/>
+                                      <Component id="jLabel4" pref="86" max="32767" attributes="0"/>
+                                      <Component id="rangoMenor" max="32767" attributes="0"/>
+                                      <Component id="bufferSize" max="32767" attributes="0"/>
+                                      <Component id="errConsumidoresNo" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="errBufferSize" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="errRangoMe" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="errConsumidoresTE" max="32767" attributes="0"/>
+                                          <Component id="jLabel5" max="32767" attributes="0"/>
+                                          <Component id="rangoMayor" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
+                                          <Component id="consumidoresTE" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="productoresTE" max="32767" attributes="0"/>
+                                          <Component id="errProductoresTE" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="errRangoMa" min="-2" pref="86" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="errRango" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel5" max="32767" attributes="0"/>
-                              <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jSpinner3" min="-2" pref="109" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="52" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -118,29 +132,48 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                  <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="productoresNo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="productoresTE" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="errProductoresTE" max="32767" attributes="0"/>
+                              <Component id="errProductoresNo" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jSpinner2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="consumidoresNo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="consumidoresTE" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="errConsumidoresTE" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="errConsumidoresNo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bufferSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="errBufferSize" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jSpinner3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rangoMayor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rangoMenor" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="42" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="errRangoMe" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="errRangoMa" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="errRango" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -151,20 +184,12 @@
                     <Property name="text" type="java.lang.String" value="Tiempo de Espera (ms)"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
-                </Component>
-                <Component class="javax.swing.JTextField" name="jTextField2">
-                </Component>
-                <Component class="javax.swing.JTextField" name="jTextField3">
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Rango de Valores (n, m)"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField4">
-                </Component>
-                <Component class="javax.swing.JSpinner" name="jSpinner3">
+                <Component class="javax.swing.JSpinner" name="rangoMayor">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
@@ -176,9 +201,9 @@
                     <Property name="text" type="java.lang.String" value="Consumidores"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JSpinner" name="jSpinner1">
+                <Component class="javax.swing.JSpinner" name="productoresNo">
                 </Component>
-                <Component class="javax.swing.JSpinner" name="jSpinner2">
+                <Component class="javax.swing.JSpinner" name="consumidoresNo">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
@@ -189,6 +214,30 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cantidad"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JSpinner" name="rangoMenor">
+                </Component>
+                <Component class="javax.swing.JSpinner" name="consumidoresTE">
+                </Component>
+                <Component class="javax.swing.JSpinner" name="productoresTE">
+                </Component>
+                <Component class="javax.swing.JSpinner" name="bufferSize">
+                </Component>
+                <Component class="javax.swing.JLabel" name="errProductoresNo">
+                </Component>
+                <Component class="javax.swing.JLabel" name="errProductoresTE">
+                </Component>
+                <Component class="javax.swing.JLabel" name="errConsumidoresTE">
+                </Component>
+                <Component class="javax.swing.JLabel" name="errConsumidoresNo">
+                </Component>
+                <Component class="javax.swing.JLabel" name="errBufferSize">
+                </Component>
+                <Component class="javax.swing.JLabel" name="errRangoMe">
+                </Component>
+                <Component class="javax.swing.JLabel" name="errRangoMa">
+                </Component>
+                <Component class="javax.swing.JLabel" name="errRango">
                 </Component>
               </SubComponents>
             </Container>
@@ -219,7 +268,7 @@
                           <Component id="jLabel8" pref="185" max="32767" attributes="0"/>
                           <Component id="jSpinner4" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="11" max="32767" attributes="0"/>
+                      <EmptySpace pref="46" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
