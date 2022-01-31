@@ -368,29 +368,24 @@ public class GUIFrame extends javax.swing.JFrame {
         
 
         if (validar == 0) {
-            if (encendido == true) {
-                encendido=false;
-            } else {
-                encendido=true;
-            }
-            
-            if(encendido == true) {
-                jButton1.setBackground(new Color(236,14,35));
-                jButton1.setText("DETENER");
-            } else {
-                jButton1.setBackground(new Color(192,189,191));
-                jButton1.setText("INICIAR");
-            }
-            
             Operation.min = rangoMe;
             Operation.max = rangoMa;
             Producer.sleep = producTE;
             Consumer.sleep = consumTE;
             
-            Buffer buffer = new Buffer(bufferSi);
-            
             Producer producers[] = new Producer[produc];
             Consumer consumers[] = new Consumer[consum];
+            
+            Buffer buffer = new Buffer(bufferSi);
+            
+            if(encendido == true){
+            encendido=false;
+            }else {
+            encendido=true;
+            }
+            if(encendido == true){
+            jButton1.setBackground(new Color(236,14,35));
+            jButton1.setText("DETENER");
             
             for (Producer producer : producers) {
                 producer = new Producer(buffer);
@@ -401,6 +396,14 @@ public class GUIFrame extends javax.swing.JFrame {
                 consumer = new Consumer(buffer);
                 consumer.start();
             }
+            }
+            else {
+            jButton1.setBackground(new Color(192,189,191));
+            jButton1.setText("INICIAR");
+            Consumer.detener();
+            Producer.detener();
+            }
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

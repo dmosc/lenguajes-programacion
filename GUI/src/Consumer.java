@@ -7,6 +7,12 @@ import java.util.logging.Logger;
 public class Consumer extends Thread {
     Buffer buffer;
     static int sleep;
+    static int i=1;
+    boolean cStop=false;
+    
+    public static void detener(){
+       i=0;
+    }
     
     Consumer(Buffer _buffer) {
         buffer = _buffer;
@@ -14,7 +20,15 @@ public class Consumer extends Thread {
     
     @Override
     public void run() {
-        while (true) {
+        if(i==0){
+                cStop=true;
+            }
+        while (!cStop) {
+            if(i==0){
+                cStop=true;
+                //System.out.print("DETENERC");
+                break;
+            }
             Operation product = this.buffer.consume();
             if (product != null) {
                 Buffer.print("C-" + this.getId() + " processed: " + product.formatted() + " -> " + product.solve());
