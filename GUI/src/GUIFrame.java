@@ -8,14 +8,11 @@
  *
  * @author sdegante
  */
-
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
 public class GUIFrame extends javax.swing.JFrame {
-
-    boolean encendido = false;
 
     /**
      * Creates new form GUIFrame
@@ -284,20 +281,19 @@ public class GUIFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /*
-     * private void validar(int var, String err, int rangoMe, int rangoMa){
-     * JLabel error = findViewById(R.id.err);
-     * if(rangoMe > var || var > rangoMa)
-     * {
-     * error.setText("*Valores entre " + rangoMe + "-" + rangoMa + "*");
-     * super.update(this.getGraphics());
-     * }else
-     * {
-     * error.setText("");
-     * }
-     * }
+    private void validar(int var, String err, int rangoMe, int rangoMa){
+        JLabel error = findViewById(R.id.err);
+        if(rangoMe > var || var > rangoMa)
+        {
+            error.setText("*Valores entre " + rangoMe + "-" + rangoMa + "*");
+            super.update(this.getGraphics());
+        }else
+        {
+            error.setText("");
+        }
+    }
      */
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
         // Entradas
@@ -367,8 +363,10 @@ public class GUIFrame extends javax.swing.JFrame {
             errRango.setText("");
         }
 
-        
         if (validar == 0) {
+            String value = ((JButton) evt.getSource()).getText();
+            Buffer.stop = !value.equals("INICIAR");
+
             Operation.min = rangoMe;
             Operation.max = rangoMa;
             Producer.sleep = producTE;
@@ -379,34 +377,18 @@ public class GUIFrame extends javax.swing.JFrame {
 
             Buffer buffer = new Buffer(bufferSi);
 
-            if (encendido == true) {
-                encendido = false;
-            } else {
-                encendido = true;
+            for (Producer producer : producers) {
+                producer = new Producer(buffer);
+                producer.start();
             }
 
-            if (encendido == true) {
-                // jButton1.setBackground(new Color(236,14,35));
-                jButton1.setForeground(new Color(236, 24, 35));
-                jButton1.setText("DETENER");
-
-                for (Producer producer : producers) {
-                    producer = new Producer(buffer);
-                    producer.start();
-                }
-
-                for (Consumer consumer : consumers) {
-                    consumer = new Consumer(buffer);
-                    consumer.start();
-                }
-            } else {
-                //jButton1.setBackground(new Color(192, 189, 191));
-                jButton1.setForeground(new Color(0, 102, 51));
-                jButton1.setText("INICIAR");
-                Consumer.detener();
-                Producer.detener();
+            for (Consumer consumer : consumers) {
+                consumer = new Consumer(buffer);
+                consumer.start();
             }
 
+            jButton1.setBackground(Buffer.stop ? new Color(192, 189, 191) : new Color(236, 14, 35));
+            jButton1.setText(Buffer.stop ? "INICIAR" : "DETENER");
         }
     }// GEN-LAST:event_jButton1ActionPerformed
 
