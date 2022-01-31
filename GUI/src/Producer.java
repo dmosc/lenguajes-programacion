@@ -1,31 +1,27 @@
 
 
 
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Producer extends Thread {
     Buffer buffer;
+    int sleep;
     
-    Producer(Buffer buffer, int tiempoE, int rangoMe, int rangoMa) {
-        this.buffer = buffer;
+    Producer(Buffer _buffer, int _sleep) {
+        sleep = _sleep;
+        buffer = _buffer;
     }
     
     @Override
     public void run() {
-        System.out.println("Running Producer...");
-        Random r = new Random(System.currentTimeMillis());
-        Operation product;
-        
-        for(int i=0 ; i<5 ; i++) {
-            product = new Operation(r.nextInt(4), r.nextInt(10), r.nextInt(10));
+        while (true) {        
+            Operation product = new Operation();
             this.buffer.produce(product);
-            //System.out.println("Producer produced: " + product);
-            Buffer.print("Producer produced: " + "(" + product.cType + " " + product.val1 + " " + product.val2 + ")");
-            
+            Buffer.print("P-" + this.getId() + " yielded: " + product.formatted());
+
             try {
-                Thread.sleep(1000);
+                Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);
             }

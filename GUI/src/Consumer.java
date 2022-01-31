@@ -6,23 +6,23 @@ import java.util.logging.Logger;
 
 public class Consumer extends Thread {
     Buffer buffer;
+    int sleep;
     
-    Consumer(Buffer buffer, int tiempoE) {
-        this.buffer = buffer;
+    Consumer(Buffer _buffer, int _sleep) {
+        buffer = _buffer;
+        sleep = _sleep;
     }
     
     @Override
     public void run() {
-        System.out.println("Running Consumer...");
-        Operation product;
-        
-        for(int i=0 ; i<5 ; i++) {
-            product = this.buffer.consume();
-            //System.out.println("Consumer consumed: " + product);
-            Buffer.print("Consumer consumed: " + "(" + product.cType + " " + product.val1 + " " + product.val2 + ") -> " + product.solve());
-            
+        while (true) {
+            Operation product = this.buffer.consume();
+            if (product != null) {
+                Buffer.print("C-" + this.getId() + " processed: " + product.formatted() + " -> " + product.solve());
+            }
+
             try {
-                Thread.sleep(1000);
+                Thread.sleep(sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);
             }

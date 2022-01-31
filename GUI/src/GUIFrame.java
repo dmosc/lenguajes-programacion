@@ -307,21 +307,21 @@ public class GUIFrame extends javax.swing.JFrame {
         int rangoMa = (Integer) rangoMayor.getValue();
         int validar = 0;
         
-        if(0 >= produc || produc > 10){
+        if (0 >= produc || produc > 10) {
             errProductoresNo.setText("*Valores entre 1-10*");
             super.update(this.getGraphics());
             validar++;
         }else{
             errProductoresNo.setText("");
         }
-        if(0 >= consum || consum > 10){
+        if(0 >= consum || consum > 10) {
             errConsumidoresNo.setText("*Valores entre 1-10");
             super.update(this.getGraphics());
             validar++;
         }else{
             errConsumidoresNo.setText("");
         }
-        if(0 > producTE || producTE > 10000){
+        if(0 > producTE || producTE > 10000) {
             errProductoresTE.setText("*Valores entre 0-10,000*");
             super.update(this.getGraphics());
             validar++;
@@ -365,17 +365,24 @@ public class GUIFrame extends javax.swing.JFrame {
         }
         
 
-        if(validar == 0){
-            Buffer buffer = new Buffer(produc, consum);
-        
-            Producer producer = new Producer(buffer, producTE, rangoMe, rangoMa);
-            producer.start();
-        
-            Consumer consumer = new Consumer(buffer, consumTE);
-            consumer.start();
+        if (validar == 0) {
+            Operation.min = rangoMe;
+            Operation.max = rangoMa;
+            Buffer buffer = new Buffer(bufferSi);
+            
+            Producer producers[] = new Producer[produc];
+            Consumer consumers[] = new Consumer[consum];
+            
+            for (Producer producer : producers) {
+                producer = new Producer(buffer, producTE);
+                producer.start();
+            }
+            
+            for (Consumer consumer : consumers) {
+                consumer = new Consumer(buffer, consumTE);
+                consumer.start();
+            }
         }
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

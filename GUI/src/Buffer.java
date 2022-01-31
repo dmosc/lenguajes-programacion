@@ -1,45 +1,66 @@
 
 
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Buffer {
+    private final Lock _mutex = new ReentrantLock(true);
+    Operation buffer[];
+    int next;
     
-    private Operation buffer = new Operation(); 
+    Buffer(int size) {
+        buffer = new Operation[size];
+        next = 0;
+    }
     
-    Buffer(int productNo, int consumNo) {
-        this.buffer.flag = -1;
+    boolean isEmpty() {
+        return next == 0;
+    }
+    
+    boolean isFull() {
+        return next + 1 >= buffer.length;
     }
     
     synchronized Operation consume() {
-        Operation product = new Operation();
+        Operation product = null;
         
-        if(this.buffer.flag == -1) {
+        while (isEmpty()) {
             try {
                 wait();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Buffer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        product = this.buffer;
-        this.buffer.flag = -1;
-        notify();
         
+        _mutex.lock();
+        try {
+            product = buffer[--next];
+        } finally {
+            _mutex.unlock();
+            notify();
+        }
         return product;
     }
     
     synchronized void produce(Operation product) {
-        if(this.buffer.flag != -1) {
+        while (isFull()) {
             try {
                 wait();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Buffer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        this.buffer = product;
         
-        notify();
+        _mutex.lock();
+        try {
+            buffer[next++] = product;
+        } finally {
+            _mutex.unlock();
+            notify();
+        }
     }
     
     static int count = 1;

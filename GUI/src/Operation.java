@@ -1,48 +1,64 @@
+
+import java.util.Random;
+
 /**
  *
- * @author Gustavo
+ * @author(s) Gustavo, Oscar
  */
+
+enum OpType { sum, subtraction, multiplication, division };
+
 public class Operation {
-  int type, val1, val2, flag;
-  char cType;
+    static int min;
+    static int max;
+    int leftOperand, rightOperand;
+    OpType operator;
   
-   Operation(){
-       
-   }
-  
-  Operation(int type, int val1, int val2){
-    this.type = type;
-    this.val1 = val1;
-    this.val2 = val2;
-    
-    switch (this.type){
-      case 0:
-        cType = '+';
-        break;
-      case 1:
-        cType = '-';
-        break;
-      case 2:
-        cType = '*';
-        break;
-      case 3:
-        cType = '/';
-        break;
-    }
+  Operation() {
+      Random random = new Random();
+      
+      int range = max - min + 1;
+      leftOperand = random.nextInt(range);
+      rightOperand = random.nextInt(range);
+      operator = OpType.values()[random.nextInt(OpType.values().length)];
   }
 
-  int solve(){
-    switch (type){
-      case 0:
-        return val1 + val2;
-      case 1:
-        return val1 - val2;
-      case 2:
-        return val1 * val2;
-      case 3:
-        return val1 / val2;
+  int solve() {
+    switch (operator) {
+      case sum:
+          return leftOperand + rightOperand;
+      case subtraction:
+          return leftOperand - rightOperand;
+      case multiplication:
+          return leftOperand * rightOperand;
+      case division:
+          if (rightOperand == 0) return 0;
+          return leftOperand / rightOperand;
       default:
-        return 0;
+            return 0;
     }
+  }
+  
+  String formatted() {
+      char type;
+      switch (operator) {
+            case sum:
+                type = '+';
+                break;
+            case subtraction:
+                type = '-';
+                break;
+            case multiplication:
+                type = '*';
+                break;
+            case division:
+                type = '/';
+                break;
+            default:
+              type = '_';
+              break;
+      }
+      
+      return "(" + type + " " + leftOperand + " " + rightOperand + ")";
   }
 }
