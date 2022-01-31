@@ -355,46 +355,50 @@ public class GUIFrame extends javax.swing.JFrame {
             errRangoMa.setText("*Valores entre 0-9*");
             super.update(this.getGraphics());
             validar++;
-        }else{
+        } else {
             errRangoMa.setText("");
         }
-        if(rangoMe > rangoMa){
+        if (rangoMe > rangoMa) {
             errRango.setText("*Rango invalido*");
             super.update(this.getGraphics());
             validar++;
-        }else{
+        } else {
             errRango.setText("");
         }
         
 
         if (validar == 0) {
-            if(encendido == true){
-            encendido=false;
-            }else {
-            encendido=true;
+            if (encendido == true) {
+                encendido=false;
+            } else {
+                encendido=true;
             }
-            if(encendido == true){
-            jButton1.setBackground(new Color(236,14,35));
-            jButton1.setText("DETENER");
-            }else {
-            jButton1.setBackground(new Color(192,189,191));
-            jButton1.setText("INICIAR");
+            
+            if(encendido == true) {
+                jButton1.setBackground(new Color(236,14,35));
+                jButton1.setText("DETENER");
+            } else {
+                jButton1.setBackground(new Color(192,189,191));
+                jButton1.setText("INICIAR");
             }
             
             Operation.min = rangoMe;
             Operation.max = rangoMa;
+            Producer.sleep = producTE;
+            Consumer.sleep = consumTE;
+            
             Buffer buffer = new Buffer(bufferSi);
             
             Producer producers[] = new Producer[produc];
             Consumer consumers[] = new Consumer[consum];
             
             for (Producer producer : producers) {
-                producer = new Producer(buffer, producTE);
+                producer = new Producer(buffer);
                 producer.start();
             }
             
             for (Consumer consumer : consumers) {
-                consumer = new Consumer(buffer, consumTE);
+                consumer = new Consumer(buffer);
                 consumer.start();
             }
         }

@@ -6,11 +6,10 @@ import java.util.logging.Logger;
 
 public class Consumer extends Thread {
     Buffer buffer;
-    int sleep;
+    static int sleep;
     
-    Consumer(Buffer _buffer, int _sleep) {
+    Consumer(Buffer _buffer) {
         buffer = _buffer;
-        sleep = _sleep;
     }
     
     @Override

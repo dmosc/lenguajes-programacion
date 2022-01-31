@@ -6,10 +6,9 @@ import java.util.logging.Logger;
 
 public class Producer extends Thread {
     Buffer buffer;
-    int sleep;
+    static int sleep;
     
-    Producer(Buffer _buffer, int _sleep) {
-        sleep = _sleep;
+    Producer(Buffer _buffer) {
         buffer = _buffer;
     }
     
