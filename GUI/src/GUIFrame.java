@@ -14,6 +14,8 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class GUIFrame extends javax.swing.JFrame {
+    
+    boolean encendido=false;
 
     /**
      * Creates new form GUIFrame
@@ -366,6 +368,19 @@ public class GUIFrame extends javax.swing.JFrame {
         
 
         if (validar == 0) {
+            if(encendido == true){
+            encendido=false;
+            }else {
+            encendido=true;
+            }
+            if(encendido == true){
+            jButton1.setBackground(new Color(236,14,35));
+            jButton1.setText("DETENER");
+            }else {
+            jButton1.setBackground(new Color(192,189,191));
+            jButton1.setText("INICIAR");
+            }
+            
             Operation.min = rangoMe;
             Operation.max = rangoMa;
             Buffer buffer = new Buffer(bufferSi);
