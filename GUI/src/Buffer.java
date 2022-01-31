@@ -12,13 +12,13 @@ public class Buffer {
     static boolean stop = false;
 
     Buffer(int size) {
-        buffer = new Operation[size];
+        buffer = new Operation[size + 1];
         left = 0;
         right = 0;
     }
 
     boolean isEmpty() {
-        return Math.abs(right - left) == 0;
+        return left == right;
     }
 
     boolean isFull() {
@@ -59,7 +59,9 @@ public class Buffer {
         _mutex.lock();
         try {
             buffer[right] = product;
-            right = (right + 1) % buffer.length;
+            if (!isFull()) {
+                right = (right + 1) % buffer.length; 
+            }
         } finally {
             _mutex.unlock();
             notify();

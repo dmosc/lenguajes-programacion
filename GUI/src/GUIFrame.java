@@ -366,7 +366,7 @@ public class GUIFrame extends javax.swing.JFrame {
         if (validar == 0) {
             String value = ((JButton) evt.getSource()).getText();
             Buffer.stop = !value.equals("INICIAR");
-
+            
             Operation.min = rangoMe;
             Operation.max = rangoMa;
             Producer.sleep = producTE;
