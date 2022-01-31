@@ -8,20 +8,21 @@ public class Buffer {
 
     private final Lock _mutex = new ReentrantLock(true);
     Operation buffer[];
-    int next;
+    int left, right;
     static boolean stop = false;
 
     Buffer(int size) {
         buffer = new Operation[size];
-        next = 0;
+        left = 0;
+        right = 0;
     }
 
     boolean isEmpty() {
-        return next == 0;
+        return Math.abs(right - left) == 0;
     }
 
     boolean isFull() {
-        return next + 1 >= buffer.length;
+        return Math.abs(right - left) == 1 || (left == 0 && right == buffer.length - 1) || (left == buffer.length - 1 && right == 0);
     }
 
     synchronized Operation consume() {
@@ -37,7 +38,8 @@ public class Buffer {
 
         _mutex.lock();
         try {
-            product = buffer[--next];
+            product = buffer[left];
+            left = (left + 1) % buffer.length;
         } finally {
             _mutex.unlock();
             notify();
@@ -56,7 +58,8 @@ public class Buffer {
 
         _mutex.lock();
         try {
-            buffer[next++] = product;
+            buffer[right] = product;
+            right = (right + 1) % buffer.length;
         } finally {
             _mutex.unlock();
             notify();
