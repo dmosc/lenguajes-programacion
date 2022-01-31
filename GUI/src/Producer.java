@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 public class Producer extends Thread {
     Buffer buffer;
     
-    Producer(Buffer buffer) {
+    Producer(Buffer buffer, int tiempoE, int rangoMe, int rangoMa) {
         this.buffer = buffer;
     }
     

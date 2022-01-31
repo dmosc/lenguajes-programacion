@@ -366,12 +366,12 @@ public class GUIFrame extends javax.swing.JFrame {
         
 
         if(validar == 0){
-            Buffer buffer = new Buffer();
+            Buffer buffer = new Buffer(produc, consum);
         
-            Producer producer = new Producer(buffer);
+            Producer producer = new Producer(buffer, producTE, rangoMe, rangoMa);
             producer.start();
         
-            Consumer consumer = new Consumer(buffer);
+            Consumer consumer = new Consumer(buffer, consumTE);
             consumer.start();
         }
         

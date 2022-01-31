@@ -8,7 +8,7 @@ public class Buffer {
     
     private Operation buffer = new Operation(); 
     
-    Buffer() {
+    Buffer(int productNo, int consumNo) {
         this.buffer.flag = -1;
     }
     

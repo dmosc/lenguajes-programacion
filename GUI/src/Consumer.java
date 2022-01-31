@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 public class Consumer extends Thread {
     Buffer buffer;
     
-    Consumer(Buffer buffer) {
+    Consumer(Buffer buffer, int tiempoE) {
         this.buffer = buffer;
     }
     
