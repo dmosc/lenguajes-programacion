@@ -183,7 +183,7 @@ public class GUIFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Operando", "Izquierdo", "Derecho"
+                "Producer Id", "Operacion"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -193,7 +193,7 @@ public class GUIFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Operando", "Izquierdo", "Derecho", "Resultado"
+                "Consumer Id", "Operacion", "Resultado"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
@@ -369,7 +369,7 @@ public class GUIFrame extends javax.swing.JFrame {
             Producer producers[] = new Producer[produc];
             Consumer consumers[] = new Consumer[consum];
 
-            Buffer buffer = new Buffer(bufferSi, jTable1, jProgressBar1, jTable2);
+            Buffer buffer = new Buffer(bufferSi, jTable1, jProgressBar1);
 
             for (Producer producer : producers) {
                 producer = new Producer(buffer);
@@ -377,7 +377,7 @@ public class GUIFrame extends javax.swing.JFrame {
             }
 
             for (Consumer consumer : consumers) {
-                consumer = new Consumer(buffer, jTable2);
+                consumer = new Consumer(buffer, jTable2, jSpinner4);
                 consumer.start();
             }
 

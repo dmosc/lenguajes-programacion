@@ -10,20 +10,18 @@ import javax.swing.table.DefaultTableModel;
 public class Buffer {
 
     private final Lock _mutex = new ReentrantLock(true);
-    Operation buffer[];
+    Operation buffer[]; // circular queue
     int left, right;
     static boolean stop = false;
     private DefaultTableModel model;
     private javax.swing.JProgressBar jProgressBar;
     int min_bar, max_bar;
-    private DefaultTableModel model2;
 
-    Buffer(int size, javax.swing.JTable _jTable, javax.swing.JProgressBar _jProgressBar, javax.swing.JTable _jTable2) {
+    Buffer(int size, javax.swing.JTable _jTable, javax.swing.JProgressBar _jProgressBar) {
         buffer = new Operation[size + 1];
         left = 0;
         right = 0;
         model = (DefaultTableModel) _jTable.getModel();
-        model2 = (DefaultTableModel) _jTable2.getModel();
         jProgressBar = _jProgressBar;
         min_bar = jProgressBar.getMinimum();
         max_bar = jProgressBar.getMaximum();
@@ -53,9 +51,7 @@ public class Buffer {
             product = buffer[left];
             left = (left + 1) % buffer.length;
             model.removeRow(0);
-            // double value = model.getRowCount() + model2.getRowCount() != 0 ? model2.getRowCount() / (model.getRowCount() + model2.getRowCount()) : 0;
-            // System.out.println(model.getRowCount() + " " + model2.getRowCount());
-            // jProgressBar.setValue((int) (value * max_bar));
+            jProgressBar.setValue((int)(100 * model.getRowCount() / buffer.length));
         } finally {
             _mutex.unlock();
             notify();
@@ -63,7 +59,7 @@ public class Buffer {
         return product;
     }
 
-    synchronized void produce(Operation product) {
+    synchronized void produce(Operation product, String id) {
         while (isFull()) {
             try {
                 wait();
@@ -78,10 +74,9 @@ public class Buffer {
             if (!isFull()) {
                 right = (right + 1) % buffer.length;
             }
-            model.addRow(product.procPorHacer());
-            // double value = model.getRowCount() + model2.getRowCount() != 0 ? model2.getRowCount() / (model.getRowCount() + model2.getRowCount()) : 0;
-            // System.out.println(model.getRowCount() + " " + model2.getRowCount());
-            // jProgressBar.setValue((int) (value * max_bar));
+String[] values = {id, product.formatted()};
+            model.addRow(values);
+            jProgressBar.setValue((int)(100 * model.getRowCount() / buffer.length));
         } finally {
             _mutex.unlock();
             notify();

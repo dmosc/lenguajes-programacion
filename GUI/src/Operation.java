@@ -19,9 +19,12 @@ public class Operation {
     Operation() {
         Random random = new Random();
 
-        int range = max - min + 1;
-        leftOperand = random.nextInt(range);
-        rightOperand = random.nextInt(range);
+        // int range = max - min + 1;
+        // leftOperand = random.nextInt(range);
+        leftOperand = (int) (Math.random() * (max - min + 1) + min);
+        // rightOperand = random.nextInt(range);
+        rightOperand = (int) (Math.random() * (max - min + 1) + min);
+
         operator = OpType.values()[random.nextInt(OpType.values().length)];
     }
 
@@ -64,20 +67,5 @@ public class Operation {
         }
 
         return "(" + type + " " + leftOperand + " " + rightOperand + ")";
-    }
-
-    String[] procRealizados() {
-        String[] payload = {operator.name(),
-            Integer.toString(leftOperand),
-            Integer.toString(rightOperand),
-            Integer.toString(solve())};
-        return payload;
-    }
-
-    String[] procPorHacer() {
-        String[] payload = {operator.name(),
-            Integer.toString(leftOperand),
-            Integer.toString(rightOperand)};
-        return payload;
     }
 }

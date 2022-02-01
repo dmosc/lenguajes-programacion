@@ -15,8 +15,7 @@ public class Producer extends Thread {
     public void run() {
         while (!Buffer.stop) {
             Operation product = new Operation();
-            this.buffer.produce(product);
-            Buffer.print("P-" + this.getId() + " yielded: " + product.formatted());
+            this.buffer.produce(product, Long.toString(this.getId()));
 
             try {
                 Thread.sleep(sleep);
