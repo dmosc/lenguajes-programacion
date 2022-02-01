@@ -393,7 +393,7 @@ public class GUIFrame extends javax.swing.JFrame {
                 consumer.start();
             }
 
-            jButton1.setBackground(Buffer.stop ? new Color(192, 189, 191) : new Color(236, 14, 35));
+            jButton1.setForeground(Buffer.stop ? new Color(0,102,51) : new Color(236, 14, 35));
             jButton1.setText(Buffer.stop ? "INICIAR" : "DETENER");
         }
     }// GEN-LAST:event_jButton1ActionPerformed
