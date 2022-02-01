@@ -28,7 +28,7 @@ public class GUIFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -73,25 +73,27 @@ public class GUIFrame extends javax.swing.JFrame {
 
         jLabel6.setText("Rango de Valores (n, m)");
 
-        rangoMayor.setValue(9);
+        rangoMayor.setModel(new javax.swing.SpinnerNumberModel(0, 0, 9, 1));
 
         jLabel1.setText("Productores");
 
         jLabel2.setText("Consumidores");
 
-        productoresNo.setValue(5);
+        productoresNo.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
 
-        consumidoresNo.setValue(5);
+        consumidoresNo.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
 
         jLabel3.setText("Tamaño del Buffer");
 
         jLabel4.setText("Cantidad");
 
-        consumidoresTE.setValue(1000);
+        rangoMenor.setModel(new javax.swing.SpinnerNumberModel(0, 0, 9, 1));
 
-        productoresTE.setValue(1000);
+        consumidoresTE.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10000, 1));
 
-        bufferSize.setValue(50);
+        productoresTE.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10000, 1));
+
+        bufferSize.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -277,14 +279,14 @@ public class GUIFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     /*
     private void validar(int var, String err, int rangoMe, int rangoMa){
@@ -302,6 +304,9 @@ public class GUIFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
+        //Limpiar salidas
+        //Borrar todas las listas en JTable
+        
         // Entradas
         int produc = (Integer) productoresNo.getValue();
         int consum = (Integer) consumidoresNo.getValue();
@@ -316,12 +321,12 @@ public class GUIFrame extends javax.swing.JFrame {
             errProductoresNo.setText("*Valores entre 1-10*");
             super.update(this.getGraphics());
             validar++;
-        } else {
-            errProductoresNo.setText("");
         }
         if (0 >= consum || consum > 10) {
             errConsumidoresNo.setText("*Valores entre 1-10");
             super.update(this.getGraphics());
+            JOptionPane.showMessageDialog(null,"Valores entre 1-10", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+
             validar++;
         } else {
             errConsumidoresNo.setText("");
@@ -372,6 +377,18 @@ public class GUIFrame extends javax.swing.JFrame {
         if (validar == 0) {
             String value = ((JButton) evt.getSource()).getText();
             Buffer.stop = !value.equals("INICIAR");
+            
+            //
+            if(value.equals("INICIAR")){
+                JOptionPane.showMessageDialog(null,"PROCESO INICIALIZADO CON EXITO", "INFO", JOptionPane.INFORMATION_MESSAGE); 
+           	 productoresNo.setValue((Integer) 1);
+           	 productoresTE.setValue((Integer) 0);
+           	 consumidoresNo.setValue((Integer) 1);
+           	 
+                
+            }
+            
+            
 
             Operation.min = rangoMe;
             Operation.max = rangoMa;
@@ -393,7 +410,7 @@ public class GUIFrame extends javax.swing.JFrame {
                 consumer.start();
             }
 
-            jButton1.setForeground(Buffer.stop ? new Color(0,102,51) : new Color(236, 14, 35));
+            jButton1.setBackground(Buffer.stop ? new Color(192, 189, 191) : new Color(236, 14, 35));
             jButton1.setText(Buffer.stop ? "INICIAR" : "DETENER");
         }
     }// GEN-LAST:event_jButton1ActionPerformed
@@ -437,7 +454,7 @@ public class GUIFrame extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JSpinner bufferSize;
     private javax.swing.JSpinner consumidoresNo;
     private javax.swing.JSpinner consumidoresTE;
@@ -472,5 +489,5 @@ public class GUIFrame extends javax.swing.JFrame {
     private javax.swing.JSpinner productoresTE;
     private javax.swing.JSpinner rangoMayor;
     private javax.swing.JSpinner rangoMenor;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
