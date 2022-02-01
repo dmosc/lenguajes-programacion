@@ -106,7 +106,7 @@ public class GUIFrame extends javax.swing.JFrame {
                             .addComponent(errConsumidoresNo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(errBufferSize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(errRangoMe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(errConsumidoresTE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -180,26 +180,20 @@ public class GUIFrame extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Operando", "Izquierdo", "Derecho"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Operando", "Izquierdo", "Derecho", "Resultado"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
@@ -366,7 +360,7 @@ public class GUIFrame extends javax.swing.JFrame {
         if (validar == 0) {
             String value = ((JButton) evt.getSource()).getText();
             Buffer.stop = !value.equals("INICIAR");
-            
+
             Operation.min = rangoMe;
             Operation.max = rangoMa;
             Producer.sleep = producTE;
@@ -375,7 +369,7 @@ public class GUIFrame extends javax.swing.JFrame {
             Producer producers[] = new Producer[produc];
             Consumer consumers[] = new Consumer[consum];
 
-            Buffer buffer = new Buffer(bufferSi);
+            Buffer buffer = new Buffer(bufferSi, jTable1, jProgressBar1, jTable2);
 
             for (Producer producer : producers) {
                 producer = new Producer(buffer);
@@ -383,7 +377,7 @@ public class GUIFrame extends javax.swing.JFrame {
             }
 
             for (Consumer consumer : consumers) {
-                consumer = new Consumer(buffer);
+                consumer = new Consumer(buffer, jTable2);
                 consumer.start();
             }
 

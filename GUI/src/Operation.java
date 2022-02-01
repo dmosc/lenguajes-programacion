@@ -65,4 +65,19 @@ public class Operation {
 
         return "(" + type + " " + leftOperand + " " + rightOperand + ")";
     }
+
+    String[] procRealizados() {
+        String[] payload = {operator.name(),
+            Integer.toString(leftOperand),
+            Integer.toString(rightOperand),
+            Integer.toString(solve())};
+        return payload;
+    }
+
+    String[] procPorHacer() {
+        String[] payload = {operator.name(),
+            Integer.toString(leftOperand),
+            Integer.toString(rightOperand)};
+        return payload;
+    }
 }
