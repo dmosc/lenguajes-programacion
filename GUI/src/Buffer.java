@@ -51,7 +51,7 @@ public class Buffer {
             product = buffer[left];
             left = (left + 1) % buffer.length;
             model.removeRow(0);
-            jProgressBar.setValue((int)(100 * model.getRowCount() / buffer.length));
+            jProgressBar.setValue((int) (100 * model.getRowCount() / buffer.length));
         } finally {
             _mutex.unlock();
             notify();
@@ -74,9 +74,9 @@ public class Buffer {
             if (!isFull()) {
                 right = (right + 1) % buffer.length;
             }
-String[] values = {id, product.formatted()};
+            String[] values = {id, product.formatted()};
             model.addRow(values);
-            jProgressBar.setValue((int)(100 * model.getRowCount() / buffer.length));
+            jProgressBar.setValue((int) (100 * model.getRowCount() / buffer.length));
         } finally {
             _mutex.unlock();
             notify();

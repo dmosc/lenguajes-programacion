@@ -9,12 +9,12 @@ public class Consumer extends Thread {
     Buffer buffer;
     static int sleep;
     private DefaultTableModel model;
-private javax.swing.JSpinner jSpinner;
+    private javax.swing.JSpinner jSpinner;
 
     Consumer(Buffer _buffer, javax.swing.JTable _jTable, javax.swing.JSpinner _jSpinner) {
         buffer = _buffer;
         model = (DefaultTableModel) _jTable.getModel();
-jSpinner = _jSpinner;
+        jSpinner = _jSpinner;
     }
 
     @Override
@@ -22,9 +22,9 @@ jSpinner = _jSpinner;
         while (!Buffer.stop) {
             Operation product = this.buffer.consume();
             if (product != null) {
-String[] values = {Long.toString(this.getId()), product.formatted(), Integer.toString(product.solve())};
+                String[] values = {Long.toString(this.getId()), product.formatted(), Integer.toString(product.solve())};
                 model.addRow(values);
-jSpinner.setValue(model.getRowCount());
+                jSpinner.setValue(model.getRowCount());
             }
 
             try {
