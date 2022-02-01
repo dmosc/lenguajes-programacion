@@ -28,7 +28,7 @@ public class GUIFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -73,13 +73,27 @@ public class GUIFrame extends javax.swing.JFrame {
 
         jLabel6.setText("Rango de Valores (n, m)");
 
+        rangoMayor.setModel(new javax.swing.SpinnerNumberModel(0, 0, 9, 1));
+
         jLabel1.setText("Productores");
 
         jLabel2.setText("Consumidores");
 
+        productoresNo.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+
+        consumidoresNo.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+
         jLabel3.setText("Tamaño del Buffer");
 
         jLabel4.setText("Cantidad");
+
+        rangoMenor.setModel(new javax.swing.SpinnerNumberModel(0, 0, 9, 1));
+
+        consumidoresTE.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10000, 1));
+
+        productoresTE.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10000, 1));
+
+        bufferSize.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -265,14 +279,14 @@ public class GUIFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     /*
     private void validar(int var, String err, int rangoMe, int rangoMa){
@@ -425,7 +439,7 @@ public class GUIFrame extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JSpinner bufferSize;
     private javax.swing.JSpinner consumidoresNo;
     private javax.swing.JSpinner consumidoresTE;
@@ -460,5 +474,6 @@ public class GUIFrame extends javax.swing.JFrame {
     private javax.swing.JSpinner productoresTE;
     private javax.swing.JSpinner rangoMayor;
     private javax.swing.JSpinner rangoMenor;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
+
