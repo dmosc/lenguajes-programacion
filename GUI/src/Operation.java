@@ -19,10 +19,7 @@ public class Operation {
     Operation() {
         Random random = new Random();
 
-        // int range = max - min + 1;
-        // leftOperand = random.nextInt(range);
         leftOperand = (int) (Math.random() * (max - min + 1) + min);
-        // rightOperand = random.nextInt(range);
         rightOperand = (int) (Math.random() * (max - min + 1) + min);
 
         operator = OpType.values()[random.nextInt(OpType.values().length)];
