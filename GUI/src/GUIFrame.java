@@ -379,14 +379,7 @@ public class GUIFrame extends javax.swing.JFrame {
             Buffer.stop = !value.equals("INICIAR");
             
             //
-            if(value.equals("INICIAR")){
-                JOptionPane.showMessageDialog(null,"PROCESO INICIALIZADO CON EXITO", "INFO", JOptionPane.INFORMATION_MESSAGE); 
-           	 productoresNo.setValue((Integer) 1);
-           	 productoresTE.setValue((Integer) 0);
-           	 consumidoresNo.setValue((Integer) 1);
-           	 
-                
-            }
+            
             
             
 
