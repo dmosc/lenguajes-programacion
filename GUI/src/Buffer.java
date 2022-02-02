@@ -98,7 +98,8 @@ public class Buffer {
             // }
             String[] values = { id, product.formatted() };
             model.addRow(values);
-            jProgressBar.setValue((int) (100 * model.getRowCount() / buffer.length));
+            jProgressBar.setValue((int) (100 * model.getRowCount() / (buffer.length-1)));
+            
         } finally {
             _mutex.unlock();
             notify();
